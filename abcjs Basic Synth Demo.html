@@ -208,11 +208,28 @@
 			});
 		}
 
-		function slideOne() {
+		function sliderElements() {
 			let sliderOne = document.getElementById("slider-1");
 			let sliderTwo = document.getElementById("slider-2");
 			let displayValOne = document.getElementById("range1");
+			let displayValTwo = document.getElementById("range2");
 			let minGap = 0;
+			let sliderTrack = document.querySelector(".slider-track");
+			let sliderMaxValue = document.getElementById("slider-1").max;
+
+			return {
+				sliderOne,
+				sliderTwo,
+				displayValOne,
+				displayValTwo,
+				minGap,
+				sliderTrack,
+				sliderMaxValue,
+			};
+		}
+
+		function slideOne() {
+			const { sliderOne, sliderTwo, displayValOne, minGap } = sliderElements();
 
 			if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
 				sliderOne.value = parseInt(sliderTwo.value) - minGap;
@@ -221,10 +238,7 @@
 			fillColor();
 		}
 		function slideTwo() {
-			let sliderOne = document.getElementById("slider-1");
-			let sliderTwo = document.getElementById("slider-2");
-			let displayValTwo = document.getElementById("range2");
-			let minGap = 0;
+			const { sliderOne, sliderTwo, displayValTwo, minGap } = sliderElements();
 
 			if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
 				sliderTwo.value = parseInt(sliderOne.value) + minGap;
@@ -233,10 +247,7 @@
 			fillColor();
 		}
 		function fillColor() {
-			let sliderOne = document.getElementById("slider-1");
-			let sliderTwo = document.getElementById("slider-2");
-			let sliderTrack = document.querySelector(".slider-track");
-			let sliderMaxValue = document.getElementById("slider-1").max;
+			const { sliderOne, sliderTwo, sliderTrack, sliderMaxValue } = sliderElements();
 
 			percent1 = (sliderOne.value / sliderMaxValue) * 100;
 			percent2 = (sliderTwo.value / sliderMaxValue) * 100;
