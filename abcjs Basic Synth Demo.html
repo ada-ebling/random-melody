@@ -101,15 +101,18 @@
 			return combinedString;
 		}
 
-		const rhythmArray = generateRhythm();
-		const randomAbc = combine(generatePitches({ pitchCount: rhythmArray.length }), rhythmArray);
-
-		var abc = "" +
-			"M: 4/4\n" +
-			"L: 1/8\n" +
-			randomAbc;
+		var abortController = new AbortController();
+		var { signal } = abortController;
 
 		function load() {
+			const rhythmArray = generateRhythm();
+			let randomAbc = combine(generatePitches({ pitchCount: rhythmArray.length }), rhythmArray);
+
+			var abc = "" +
+				"M: 4/4\n" +
+				"L: 1/8\n" +
+				randomAbc;
+
 			// First draw the music - this supplies an object that has a lot of information about how to create the synth.
 			// NOTE: If you want just the sound without showing the music, use "*" instead of "paper" in the renderAbc call.
 			var visualObj = ABCJS.renderAbc("paper", abc, {
@@ -123,7 +126,7 @@
 			var explanationDiv = document.querySelector(".suspend-explanation");
 			var statusDiv = document.querySelector(".status");
 
-			startAudioButton.addEventListener("click", function() {
+			function bootAudio() {
 				startAudioButton.setAttribute("style", "display:none;");
 				explanationDiv.setAttribute("style", "opacity: 0;");
 				statusDiv.innerHTML = "<div>Testing browser</div>";
@@ -177,7 +180,12 @@
 					var audioError = document.querySelector(".audio-error");
 					audioError.setAttribute("style", "");
 				}
-			});
+			}
+
+			abortController.abort();
+			abortController = new AbortController();
+			signal = abortController.signal;
+			startAudioButton.addEventListener("click", bootAudio, { signal });
 
 			stopAudioButton.addEventListener("click", function() {
 				startAudioButton.setAttribute("style", "");
@@ -195,7 +203,7 @@
     <img src="abcjs%20Basic%20Synth%20Demo_files/abcjs_comp_extended_08.svg" alt="abcjs logo">
     <h1>Basic Synth</h1>
   </header>
-	<button onclick="window.location.reload()">Click Me!</button>
+	<button onclick="load()">Click Me!</button>
 	<div class="container">
 		<div id="paper" class="abcjs-container" style="display: inline-block; position: relative; width: 100%; padding-bottom: 59.8906%; vertical-align: middle; overflow: hidden;">
 		</div>
