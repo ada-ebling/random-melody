@@ -244,7 +244,7 @@
 			if (parseInt(sliderTwo.value) - parseInt(sliderOne.value) <= minGap) {
 				sliderOne.value = parseInt(sliderTwo.value) - minGap;
 			}
-			displayValOne.textContent = PITCHES[sliderOne.value];
+			ABCJS.renderAbc("range1", PITCHES[sliderOne.value])[0];
 			fillColor();
 		}
 		function slideTwo() {
@@ -254,6 +254,7 @@
 				sliderTwo.value = parseInt(sliderOne.value) + minGap;
 			}
 			displayValTwo.textContent = PITCHES[sliderTwo.value];
+			ABCJS.renderAbc("range2", PITCHES[sliderTwo.value])[0];
 			fillColor();
 		}
 		function fillColor() {

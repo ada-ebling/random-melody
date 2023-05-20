@@ -15,11 +15,6 @@
   gap: 0.5rem;
 }
 
-.wrapper > span {
-  align-self: center;
-  justify-self: center;
-}
-
 .slider-container {
   position: relative;
   width: 100%;
