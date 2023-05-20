@@ -273,20 +273,17 @@
 			<h1>Basic Synth</h1>
 		</header>
 		<div class="wrapper">
-			<div class="values">
-				<span id="range1">
-					0
-				</span>
-				<span> &dash; </span>
-				<span id="range2">
-					100
-				</span>
-			</div>
+			<span id="range1">
+				0
+			</span>
 			<div class="slider-container">
 				<div class="slider-track"></div>
 				<input type="range" min="0" max="100" value="30" id="slider-1" oninput="slideOne()">
 				<input type="range" min="0" max="100" value="70" id="slider-2" oninput="slideTwo()">
 			</div>
+			<span id="range2">
+				100
+			</span>
 		</div>
 		<button onclick="load()">Click Me!</button>
 		<div class="container">

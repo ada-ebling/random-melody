@@ -10,18 +10,20 @@
 }
 
 .wrapper {
-  position: relative;
-  width: 95vmin;
-  background-color: #ffffff;
-  padding: 50px 40px 20px 40px;
-  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  gap: 0.5rem;
+}
+
+.wrapper > span {
+  align-self: center;
+  justify-self: center;
 }
 
 .slider-container {
   position: relative;
   width: 100%;
   height: 100px;
-  margin-top: 30px;
 }
 
 input[type="range"] {
