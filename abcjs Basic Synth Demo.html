@@ -109,7 +109,17 @@
 		var abortController = new AbortController();
 		var { signal } = abortController;
 
+		function updateSliders() {
+			const { sliderOne, sliderTwo } = sliderElements();
+			const pitchesMax = PITCHES.length - 1;
+			sliderOne.max = pitchesMax;
+			sliderTwo.max = pitchesMax;
+			sliderOne.value = 0;
+			sliderTwo.value = pitchesMax;
+		}
+
 		function initLoad() {
+			updateSliders();
 			load();
 			slideOne();
 			slideTwo();
