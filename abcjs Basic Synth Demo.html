@@ -104,6 +104,10 @@
 		var abortController = new AbortController();
 		var { signal } = abortController;
 
+		function initLoad() {
+			load();
+		}
+
 		function load() {
 			const rhythmArray = generateRhythm();
 			let randomAbc = combine(generatePitches({ pitchCount: rhythmArray.length }), rhythmArray);
@@ -197,7 +201,7 @@
 		}
 	</script>
 </head>
-<body onload="load()">
+<body onload="initLoad()">
 <main>
   <header>
     <img src="abcjs%20Basic%20Synth%20Demo_files/abcjs_comp_extended_08.svg" alt="abcjs logo">
